@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'product.dart';
+import 'product_grid.dart';
 
 void main() {
   List<Product> products = [
