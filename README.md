@@ -1,16 +1,32 @@
-# app_product
+# Tokoku
 
-A new Flutter project.
+Tokoku adalah sebuah aplikasi Flutter sederhana untuk menampilkan daftar produk dan detail produk. Aplikasi ini dibangun dengan menggunakan Flutter dan Material Design.
 
-## Getting Started
+## Fitur
 
-This project is a starting point for a Flutter application.
+- Menampilkan daftar produk dengan gambar, judul, dan harga.
+- Menampilkan detail produk dengan deskripsi, harga, dan tombol untuk membeli.
+- Responsif, dapat digunakan di perangkat seluler maupun tablet.
 
-A few resources to get you started if this is your first Flutter project:
+## Prasyarat
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK
+- Dart SDK
+- Editor (misalnya Visual Studio Code atau Android Studio)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Cara Menggunakan
+
+1. Pastikan Anda memiliki Flutter SDK yang terinstal.
+2. Clone repository ini ke perangkat lokal Anda.
+3. Buka proyek dalam editor pilihan Anda.
+4. Jalankan `flutter pub get` untuk menginstal semua dependensi.
+5. Jalankan aplikasi dengan perintah `flutter run`.
+ 
+
+## Kontribusi
+
+Anda dapat berkontribusi pada proyek ini dengan melakukan pull request. Setiap bantuan sangat dihargai!
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).

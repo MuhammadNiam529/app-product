@@ -5,47 +5,47 @@ import 'product_grid.dart';
 void main() {
   List<Product> products = [
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 1',
       price: '\$10.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 2',
       price: '\$20.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 3',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 4',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 5',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 6',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 7',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 8',
       price: '\$30.00',
     ),
     Product(
-      image: 'images/product1.jpeg',
+      image: 'images/product1.png',
       title: 'Kaos Bloods 9',
       price: '\$30.00',
     ),
