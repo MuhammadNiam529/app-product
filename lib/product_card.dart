@@ -4,8 +4,10 @@ import 'product.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final VoidCallback onDelete;
+  final VoidCallback onEdit;
 
-  ProductCard({required this.product, required this.onDelete});
+  ProductCard(
+      {required this.product, required this.onDelete, required this.onEdit});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +41,17 @@ class ProductCard extends StatelessWidget {
               ),
             ),
           ),
-          IconButton(
-            icon: Icon(Icons.delete, color: Colors.red),
-            onPressed: onDelete,
+          ButtonBar(
+            children: [
+              IconButton(
+                icon: Icon(Icons.edit, color: Colors.blue),
+                onPressed: onEdit,
+              ),
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.red),
+                onPressed: onDelete,
+              ),
+            ],
           ),
         ],
       ),

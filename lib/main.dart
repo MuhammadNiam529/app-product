@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'product.dart';
 import 'product_grid.dart';
 import 'add_product_screen.dart';
+import 'edit_product_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,6 +78,25 @@ class _ProductScreenState extends State<ProductScreen> {
     });
   }
 
+  void _editProduct(Product product) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => EditProductScreen(product: product)),
+    );
+
+    if (result != null) {
+      await FirebaseFirestore.instance
+          .collection('products')
+          .doc(product.id)
+          .update(result);
+      setState(() {
+        _products[_products.indexWhere((element) => element.id == product.id)] =
+            Product.fromFirestore(result);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +147,7 @@ class _ProductScreenState extends State<ProductScreen> {
             child: ProductGrid(
               products: _products,
               onDelete: _deleteProduct,
+              onEdit: _editProduct,
             ),
           ),
         ],

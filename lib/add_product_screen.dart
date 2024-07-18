@@ -27,8 +27,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
         'title': _titleController.text,
         'price': _priceController.text,
       };
-      await FirebaseFirestore.instance.collection('products').add(newProduct);
-      Navigator.pop(context, newProduct);
+      try {
+        await FirebaseFirestore.instance.collection('products').add(newProduct);
+        Navigator.pop(context, newProduct);
+      } catch (e) {
+        // Handle error
+        print('Error adding product: $e');
+        // Optionally show an error dialog or snackbar
+      }
     }
   }
 
