@@ -9,16 +9,19 @@ class ProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      children: List.generate(
-        products.length,
-        (index) {
-          return ProductCard(
-            product: products[index],
-          );
-        },
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 3 / 2, // Sesuaikan sesuai kebutuhan Anda
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
       ),
+      itemCount: products.length,
+      itemBuilder: (context, index) {
+        return ProductCard(
+          product: products[index],
+        );
+      },
     );
   }
 }
