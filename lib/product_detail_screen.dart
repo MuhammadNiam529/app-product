@@ -97,7 +97,6 @@ class ProductDetailScreen extends StatelessWidget {
                     // Aksi saat tombol "Buy Now" ditekan
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
                     minimumSize: Size(double.infinity, 50),
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                   ),
