@@ -21,7 +21,47 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
+  @override
+  _ProductScreenState createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  List<Product> _products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProducts();
+  }
+
+  void _loadProducts() {
+    FirebaseFirestore.instance
+        .collection('products')
+        .snapshots()
+        .listen((snapshot) {
+      setState(() {
+        _products = snapshot.docs
+            .map((doc) =>
+                Product.fromFirestore(doc.data() as Map<String, dynamic>))
+            .toList();
+      });
+    });
+  }
+
+  void _addProduct() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddProductScreen()),
+    );
+
+    if (result != null) {
+      setState(() {
+        _products.add(Product.fromFirestore(result));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +80,7 @@ class ProductScreen extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.add, color: Colors.black),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddProductScreen()),
-              );
-            },
+            onPressed: _addProduct,
           ),
         ],
       ),
@@ -74,30 +109,7 @@ class ProductScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection('products').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                }
-
-                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return Center(child: Text('No products available'));
-                }
-
-                List<Product> products = snapshot.data!.docs.map((doc) {
-                  return Product.fromFirestore(
-                      doc.data() as Map<String, dynamic>);
-                }).toList();
-
-                return ProductGrid(products: products);
-              },
-            ),
+            child: ProductGrid(products: _products),
           ),
         ],
       ),

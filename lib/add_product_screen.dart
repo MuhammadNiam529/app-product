@@ -22,12 +22,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   Future<void> _addProduct() async {
     if (_formKey.currentState!.validate()) {
-      await FirebaseFirestore.instance.collection('products').add({
+      final newProduct = {
         'image': _imageController.text,
         'title': _titleController.text,
         'price': _priceController.text,
-      });
-      Navigator.pop(context);
+      };
+      await FirebaseFirestore.instance.collection('products').add(newProduct);
+      Navigator.pop(context, newProduct);
     }
   }
 
