@@ -4,8 +4,9 @@ import 'product_card.dart';
 
 class ProductGrid extends StatelessWidget {
   final List<Product> products;
+  final Function(Product) onDelete;
 
-  ProductGrid({required this.products});
+  ProductGrid({required this.products, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class ProductGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         return ProductCard(
           product: products[index],
+          onDelete: () => onDelete(products[index]),
         );
       },
     );

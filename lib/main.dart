@@ -41,10 +41,15 @@ class _ProductScreenState extends State<ProductScreen> {
         .snapshots()
         .listen((snapshot) {
       setState(() {
-        _products = snapshot.docs
-            .map((doc) =>
-                Product.fromFirestore(doc.data() as Map<String, dynamic>))
-            .toList();
+        _products = snapshot.docs.map((doc) {
+          var data = doc.data() as Map<String, dynamic>;
+          return Product(
+            id: doc.id,
+            image: data['image'],
+            title: data['title'],
+            price: data['price'],
+          );
+        }).toList();
       });
     });
   }
@@ -60,6 +65,16 @@ class _ProductScreenState extends State<ProductScreen> {
         _products.add(Product.fromFirestore(result));
       });
     }
+  }
+
+  void _deleteProduct(Product product) async {
+    await FirebaseFirestore.instance
+        .collection('products')
+        .doc(product.id)
+        .delete();
+    setState(() {
+      _products.remove(product);
+    });
   }
 
   @override
@@ -109,7 +124,10 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
           ),
           Expanded(
-            child: ProductGrid(products: _products),
+            child: ProductGrid(
+              products: _products,
+              onDelete: _deleteProduct,
+            ),
           ),
         ],
       ),
