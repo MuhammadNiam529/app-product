@@ -15,12 +15,6 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            product.image,
-            fit: BoxFit.cover,
-            height: 100.0, // Sesuaikan tinggi gambar sesuai kebutuhan
-            width: double.infinity,
-          ),
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
