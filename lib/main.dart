@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'product.dart';
 import 'product_grid.dart';
+import 'add_product_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,15 @@ class ProductScreen extends StatelessWidget {
             icon: Icon(Icons.search, color: Colors.black),
             onPressed: () {
               // Aksi saat tombol pencarian ditekan
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.add, color: Colors.black),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddProductScreen()),
+              );
             },
           ),
         ],
@@ -81,11 +91,8 @@ class ProductScreen extends StatelessWidget {
                 }
 
                 List<Product> products = snapshot.data!.docs.map((doc) {
-                  return Product(
-                    image: doc['image'],
-                    title: doc['title'],
-                    price: doc['price'],
-                  );
+                  return Product.fromFirestore(
+                      doc.data() as Map<String, dynamic>);
                 }).toList();
 
                 return ProductGrid(products: products);
